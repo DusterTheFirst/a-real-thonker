@@ -1,0 +1,30 @@
+.thonk {
+    z-index:1000;
+    font-size: 100px;
+    position: fixed;
+    display: none;
+}
+.show {
+    display: block;
+}
+.topleft {
+    top: 0;
+    left: 0;
+}
+.topright {
+    top: 0;
+    right: 0;
+}
+.bottomleft {
+    bottom: 0;
+    left: 0;
+}
+.bottomright {
+    bottom: 0;
+    right: 0;
+}
+.bigboi {
+    font-size: 200px;
+    top: calc(50% - 100px);
+    left: calc(50% - 100px);
+}
