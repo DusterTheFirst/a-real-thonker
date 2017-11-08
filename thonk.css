@@ -5,7 +5,7 @@
     display: none;
 }
 .show {
-    display: block;
+    display: block !important;
 }
 .topleft {
     top: 0;
@@ -27,4 +27,17 @@
     font-size: 200px;
     top: calc(50% - 100px);
     left: calc(50% - 100px);
+}
+.whodidthis {
+    z-index:1000;
+    font-size: 80px;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    height: 100px;
+    background: black;
+    color: white;
 }

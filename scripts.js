@@ -3,6 +3,7 @@ chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
         console.log(data);
         document.getElementById('cornerthonk').checked = data.cornerthinktoggled;
         document.getElementById('bigboi').checked = data.bigboitoggled;
+        document.getElementById('whodidthis').checked = data.whodidthistoggled;
     });        
 });
 
@@ -16,5 +17,11 @@ document.getElementById('bigboi')
 .addEventListener('change', (e) => {
     chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
         chrome.tabs.sendMessage(tabs[0].id, {bigboi: document.getElementById('bigboi').checked});        
+    });
+});
+document.getElementById('whodidthis')
+.addEventListener('change', (e) => {
+    chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+        chrome.tabs.sendMessage(tabs[0].id, {whodidthis: document.getElementById('whodidthis').checked});        
     });
 });

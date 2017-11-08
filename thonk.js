@@ -32,6 +32,11 @@ bigboi.classList.add('thonk');
 bigboi.classList.add('bigboi');
 document.body.appendChild(bigboi);
 
+let whodidthis = document.createElement('div');
+whodidthis.innerHTML = "😂😂😂 WHO DID THIS??? 😂😂😂";
+whodidthis.classList.add('whodidthis');
+document.body.appendChild(whodidthis);
+
 //LIT 🔥🔥🔥👌
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
@@ -43,15 +48,19 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.bigboi !== undefined)
         bigboitoggle(request.bigboi);
 
+    if (request.whodidthis !== undefined)
+        whodidthistoggle(request.whodidthis);
+
     if (request.givememyinfobackplease) {
         sendResponse({
             cornerthinktoggled: cornerthinktoggled,
-            bigboitoggled: bigboitoggled
+            bigboitoggled: bigboitoggled,
+            whodidthistoggled: whodidthistoggled
         })
     }
 });
 
-var cornerthinktoggled;
+var cornerthinktoggled = false;
 function cornerthonktoggle(enabled) {
     cornerthinktoggled = enabled;
     if (enabled) {
@@ -67,13 +76,24 @@ function cornerthonktoggle(enabled) {
     }
 }
 
-var bigboitoggled;
+var bigboitoggled = false;
 function bigboitoggle(enabled) {
     bigboitoggled = enabled;
     if (enabled) {
         bigboi.classList.add('show');   
     } else {
         bigboi.classList.remove('show');
+    }
+}
+
+var whodidthistoggled = false;
+function whodidthistoggle(enabled) {
+    whodidthistoggled = enabled;
+    if (enabled) {
+        whodidthis.classList.add('show');
+    } else {
+        whodidthis.classList.remove('show');
+        
     }
 }
 
