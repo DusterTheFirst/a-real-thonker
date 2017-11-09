@@ -90,9 +90,9 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
     if (request.givememyinfobackplease) {
         sendResponse({
-            cornerthinktoggled: cornerthinktoggled,
-            bigboitoggled: bigboitoggled,
-            whodidthistoggled: whodidthistoggled
+            cornerthinktoggled: thonkmanager.get('cornerthinktoggled'),
+            bigboitoggled: thonkmanager.get('bigboitoggled'),
+            whodidthistoggled: thonkmanager.get('whodidthistoggled')
         })
     }
 });

@@ -1,5 +1,5 @@
 /**
- * @typedef {(thonker: HTMLElement, value: boolean, index: number, items: HTMLElement[]) => void} callbackfunction
+ * @typedef {(thonker: HTMLElement, value: boolean | String | number, index: number, items: HTMLElement[]) => void} callbackfunction
  */
 
 class ThonkManager {
@@ -9,7 +9,7 @@ class ThonkManager {
     constructor() {
         /**
          * The map of the thonkers by name
-         * @type {Map<string, {items: HTMLElement[], value: boolean, callbacks: callbackfunction[]}>}
+         * @type {Map<string, {items: HTMLElement[], value: boolean | String | number, callbacks: callbackfunction[]}>}
          */
         this.thonkers = new Map();
     }
@@ -49,8 +49,8 @@ class ThonkManager {
 
     /**
      * Set a value of some thonkers
-     * @param {*} nameofthonker The name of the thonkers
-     * @param {*} value The value to set
+     * @param {string} nameofthonker The name of the thonkers
+     * @param {boolean | String | number} value The value to set
      */
     set(nameofthonker, value) {
         if (!nameofthonker)
@@ -64,14 +64,29 @@ class ThonkManager {
         if (!currentthonkers)
             throw `${nameofthonker} has not been defined`
 
+        currentthonkers.value = value;
+
         for (let index in currentthonkers.items) {
             let thonker = currentthonkers.items[index];
             if (!thonker instanceof HTMLElement)
                 throw `In the list '${nameofthonker}' at position: ${index}, ${typeof thonker} is not an instance of an HTMLElement`
 
             if (currentthonkers.callbacks)
-            for (let callback of currentthonkers.callbacks)
-                callback(thonker, currentthonkers.value, index, currentthonkers.items);
+                for (let callback of currentthonkers.callbacks)
+                    callback(thonker, currentthonkers.value, index, currentthonkers.items);
         }
+
+        this.thonkers.set(nameofthonker, currentthonkers);
+    }
+
+    /**
+     * Get a value of them thonkers
+     * @param {string} nameofthonker 
+     */
+    get(nameofthonker) {
+        if (!nameofthonker)
+            throw 'You must specify a name to get';
+
+        return this.thonkers.get(nameofthonker).value;
     }
 }
