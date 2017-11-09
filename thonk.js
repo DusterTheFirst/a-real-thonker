@@ -4,6 +4,9 @@
 console.log('%c🤔🤔🤔🤔', 'font-size:100px');
 console.log('%ci see you know how to open dev tools, good job', 'color: #bada55; font-size:30px');
 
+const thonkmanager = new ThonkManager();
+
+//#region CORNER THONKS
 let topleft = document.createElement('div');
 topleft.innerHTML = "🤔";
 topleft.classList.add('thonk');
@@ -28,16 +31,48 @@ bottomright.classList.add('thonk');
 bottomright.classList.add('bottomright');
 document.body.appendChild(bottomright);
 
+thonkmanager.bind('cornerthonks', topleft, topright, bottomleft, bottomright);
+thonkmanager.listen('cornerthonks', (thonker, value, index, items) => {
+    if (value) {
+        thonker.classList.add('show');   
+    } else {
+        thonker.classList.remove('show');  
+    }
+})
+//#endregion
+
+//#region BIGBOI
 let bigboi = document.createElement('div');
 bigboi.innerHTML = "🤔";
 bigboi.classList.add('thonk');
 bigboi.classList.add('bigboi');
 document.body.appendChild(bigboi);
 
+thonkmanager.bind('bigboi', bigboi);
+thonkmanager.listen('bigboi', (thonker, value, index, items) => {
+    if (value) {
+        thonker.classList.add('show');   
+    } else {
+        thonker.classList.remove('show');  
+    }
+})
+//#endregion
+
+//#region WHODIDTHIS 😂😂😂
 let whodidthis = document.createElement('div');
 whodidthis.innerHTML = "😂😂😂 WHO DID THIS??? 😂😂😂";
 whodidthis.classList.add('whodidthis');
 document.body.appendChild(whodidthis);
+
+thonkmanager.bind('whodidthis', whodidthis);
+thonkmanager.listen('whodidthis', (thonker, value, index, items) => {
+    if (value) {
+        thonker.classList.add('show');   
+    } else {
+        thonker.classList.remove('show');  
+    }
+})
+//#endregion
 
 //LIT 🔥🔥🔥👌
 
@@ -45,13 +80,13 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     console.log(request);
     
     if (request.cornerthonk !== undefined)
-        cornerthonktoggle(request.cornerthonk);
+        thonkmanager.set('cornerthonks', request.cornerthonk);
     
     if (request.bigboi !== undefined)
-        bigboitoggle(request.bigboi);
+        thonkmanager.set('bigboi', request.bigboi);
 
     if (request.whodidthis !== undefined)
-        whodidthistoggle(request.whodidthis);
+        thonkmanager.set('whodidthis', request.whodidthis);
 
     if (request.givememyinfobackplease) {
         sendResponse({
@@ -61,42 +96,5 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         })
     }
 });
-
-var cornerthinktoggled = false;
-function cornerthonktoggle(enabled) {
-    cornerthinktoggled = enabled;
-    if (enabled) {
-        topleft.classList.add('show');
-        topright.classList.add('show');
-        bottomleft.classList.add('show');
-        bottomright.classList.add('show');      
-    } else {
-        topleft.classList.remove('show');
-        topright.classList.remove('show');
-        bottomleft.classList.remove('show');
-        bottomright.classList.remove('show');  
-    }
-}
-
-var bigboitoggled = false;
-function bigboitoggle(enabled) {
-    bigboitoggled = enabled;
-    if (enabled) {
-        bigboi.classList.add('show');   
-    } else {
-        bigboi.classList.remove('show');
-    }
-}
-
-var whodidthistoggled = false;
-function whodidthistoggle(enabled) {
-    whodidthistoggled = enabled;
-    if (enabled) {
-        whodidthis.classList.add('show');
-    } else {
-        whodidthis.classList.remove('show');
-        
-    }
-}
 
 //just right ✋😩👌

@@ -2,7 +2,7 @@
  * @typedef {(thonker: HTMLElement, value: boolean, index: number, items: HTMLElement[]) => void} callbackfunction
  */
 
-class thonkmanager {
+class ThonkManager {
     /**
      * Create a manager of thine thonkers
      */
