@@ -1,4 +1,4 @@
-chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+getTabs((tabs) => {
     chrome.tabs.sendMessage(tabs[0].id, {givememyinfobackplease: true}, (data) => {
         console.log(data);
         document.getElementById('cornerthonk').checked = data.cornerthinktoggled;
@@ -9,19 +9,48 @@ chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
 
 document.getElementById('cornerthonk')
 .addEventListener('change', (e) => {
-    chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+    getTabs((tabs) => {
         chrome.tabs.sendMessage(tabs[0].id, {cornerthonk: document.getElementById('cornerthonk').checked});        
     });
 });
 document.getElementById('bigboi')
 .addEventListener('change', (e) => {
-    chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+    getTabs((tabs) => {
         chrome.tabs.sendMessage(tabs[0].id, {bigboi: document.getElementById('bigboi').checked});        
     });
 });
 document.getElementById('whodidthis')
 .addEventListener('change', (e) => {
-    chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+    getTabs((tabs) => {
         chrome.tabs.sendMessage(tabs[0].id, {whodidthis: document.getElementById('whodidthis').checked});        
     });
 });
+
+getTabs((tabs) => {
+    let url = parseURL(tabs[0].url)
+    if (url.protocol === 'chrome:') {
+        document.getElementById('choices').style.display = "none";
+        document.getElementById('no').style.display = "block";
+    }
+});
+
+/**
+ * Get all tabs
+ * @param {(tabs) => void} callback Callback to call
+ */
+function getTabs(callback) {
+    chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+        callback(tabs);
+    });
+}
+
+/**
+ * Parse a url
+ * @param {String} url URL to parse
+ * @returns {HTMLAnchorElement}
+ */
+function parseURL(url) {
+    let parser = document.createElement('a');
+    parser.href = url;
+    return parser;
+}

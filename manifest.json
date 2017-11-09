@@ -7,15 +7,18 @@
     "homepage_url": "https://github.com/DusterTheFirst/a-real-thonker",
     "version": "1.0",
     "icons": { 
-      "16": "icon16.png",
-      "48": "icon48.png",
-     "128": "icon128.png" 
+      "16": "images/icon16.png",
+      "48": "images/icon48.png",
+     "128": "images/icon128.png" 
     },
     "browser_action": {
-      "default_icon": "icon.png",
-      "default_popup": "index.html"
+      "default_icon": "images/icon.png",
+      "default_popup": "popup/index.html"
     },
-    "options_page": "options.html",
+    "options_ui": {
+      "page": "settings/settings.html",
+      "chrome_style": true
+    },
     "permissions": [
       "activeTab",
       "storage"
@@ -23,8 +26,8 @@
     "content_scripts": [
         {
             "matches":["http://*/*", "https://*/*"],
-            "css": ["thonk.css"],
-            "js": ["thonk.js", "thonkmanager.js"]
+            "css": ["inject/thonk.css"],
+            "js": ["inject/thonkmanager.js", "inject/thonk.js"]
         }
     ]
   }

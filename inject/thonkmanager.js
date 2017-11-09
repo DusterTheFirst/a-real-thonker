@@ -27,7 +27,7 @@ class ThonkManager {
                 value: false,
                 callbacks: []
             }
-        value.items.concat(thonkers);
+        value.items = value.items.concat(thonkers);
 
         this.thonkers.set(nameofthonker, value)
     }
@@ -42,7 +42,7 @@ class ThonkManager {
         if (!value)
             throw `${nameofthonker} must be bound before you can listen to it`
 
-        value.callbacks.concat(callbacks);
+        value.callbacks = value.callbacks.concat(callbacks);
         
         this.thonkers.set(nameofthonker, value)
     }
@@ -58,7 +58,7 @@ class ThonkManager {
 
         let currentthonkers = this.thonkers.get(nameofthonker);
 
-        if (!currentthonkers.callbacks !== [])
+        if (currentthonkers.callbacks === [])
             throw 'Your actions are futile unless you are listining for them';
 
         if (!currentthonkers)
