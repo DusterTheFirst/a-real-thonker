@@ -1,3 +1,5 @@
+/// <reference path="thonkmanager.js"/>
+
 //cold
 console.log('%c🤔🤔🤔🤔', 'font-size:100px');
 console.log('%ci see you know how to open dev tools, good job', 'color: #bada55; font-size:30px');

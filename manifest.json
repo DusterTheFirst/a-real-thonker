@@ -18,7 +18,7 @@
         {
             "matches":["http://*/*", "https://*/*"],
             "css": ["thonk.css"],
-            "js": ["thonk.js"]
+            "js": ["thonk.js", "thonkmanager.js"]
         }
     ]
   }
