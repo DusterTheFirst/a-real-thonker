@@ -25,13 +25,22 @@ document.getElementById('whodidthis')
         chrome.tabs.sendMessage(tabs[0].id, {whodidthis: document.getElementById('whodidthis').checked});        
     });
 });
+document.getElementById('expand')
+.addEventListener('click', (e) => {
+    document.body.style.height = "1000px";
+    document.body.style.width = "1000px";
+});
+
 
 getTabs((tabs) => {
     let url = parseURL(tabs[0].url)
     if (url.protocol === 'chrome:') {
-        document.getElementById('choices').style.display = "none";
+        document.getElementById('body').style.display = "none";
         document.getElementById('no').style.display = "block";
     }
+
+    
+    document.getElementById('url').innerHTML = tabs[0].url;
 });
 
 /**
