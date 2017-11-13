@@ -30,6 +30,11 @@ document.getElementById('expand')
     document.body.style.height = "1000px";
     document.body.style.width = "1000px";
 });
+document.getElementById('thonkconf')
+.addEventListener('click', (e) => {
+    chrome.runtime.openOptionsPage();
+    ;
+});
 
 
 getTabs((tabs) => {
@@ -40,7 +45,8 @@ getTabs((tabs) => {
     }
 
     
-    document.getElementById('url').innerHTML = tabs[0].url;
+    document.getElementById('host').innerHTML = url.host;
+    document.getElementById('path').innerHTML = url.pathname;
 });
 
 /**

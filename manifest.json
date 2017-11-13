@@ -2,10 +2,10 @@
     "manifest_version": 2,
   
     "name": "THONK",
-    "description": "GET THONKERS EVERYWHERE",
+    "description": "You can never have enough thonkers",
     "author":"DusterTheFirst",
     "homepage_url": "https://github.com/DusterTheFirst/a-real-thonker",
-    "version": "1.0",
+    "version": "0.10",
     "icons": { 
       "16": "images/icon16.png",
       "48": "images/icon48.png",
@@ -29,5 +29,11 @@
             "css": ["inject/thonk.css"],
             "js": ["inject/thonkmanager.js", "inject/thonk.js"]
         }
+    ],
+    "web_accessible_resources": [
+      "images/icon.png",
+      "images/icon16.png",
+      "images/icon48.png",
+      "images/icon128.png"
     ]
   }
